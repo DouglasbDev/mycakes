@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
-const { double } = require("webidl-conversions");
 
-const cakeSchema = new mongoose.Schema({
+const ingredientsSchema = new mongoose.Schema({
     _id:{
        type: mongoose.Schema.Types.String,
        required: true, 
@@ -16,13 +15,8 @@ const cakeSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.Number,
         required: true, 
      },
-
-     description:{
-        type: mongoose.Schema.Types.String,
-        required: true, 
-     }
-    
+   
     
 });
 
-module.exports = mongoose.model("cake", cakeSchema);
+module.exports = mongoose.model("ingredients", ingredientsSchema);
