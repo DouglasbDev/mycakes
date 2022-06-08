@@ -5,7 +5,7 @@ const {v4: uuid} = require("uuid");
 const cake = require("../models/cake");
 
 module.exports = {
-  async index(resquest, response){
+    async index(request, response){
       try{
         const cakes = await  cake.find();
         if(cakes.length < 1){

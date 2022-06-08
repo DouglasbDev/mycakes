@@ -2,12 +2,12 @@ const express = require("express");
 const cakeController = require("./controllers/cakeController");
 const finalResultController = require("./controllers/finalResultController");
 const ingredientsController = require("./controllers/ingredientsController");
+const userController = require("./controllers/userController");
 const cakesMiddlewares = require("./middlewares/cakesMiddlewares");
 const finalResultMiddlewares = require("./middlewares/finalResultMiddlewares");
 const ingredientsMiddlewares = require("./middlewares/ingredientsMiddlewares");
+const userCreateMiddlewares = require("./middlewares/userCreateMiddlewares");
 const routes = express.Router();
-
-
 
 
 routes.get("/cakes", cakeController.index);
@@ -24,7 +24,15 @@ routes.delete("/ingredients/:id", ingredientsMiddlewares.validateId, ingredients
 
 routes.get("/finalResult", finalResultController.index);
 routes.post("/finalResult", finalResultController.store);
-routes.put("/finalResult", finalResultMiddlewares.validateId,finalResultController.update);
+routes.put("/finalResult/:id", finalResultMiddlewares.validateId,finalResultController.update);
+routes.delete("/finalResult/:id", finalResultMiddlewares.validateId,finalResultController.delete);
+
+
+routes.get("/user", userController.index);
+routes.post("/user/singin", userController.storeCreate);
+routes.post("/user/login", userController.storeLogin);
+routes.put("user/:id", userCreateMiddlewares.validateId, userController.update);
+routes.delete("/user/:id", userCreateMiddlewares.validateId, userController.delete);
 
 
 

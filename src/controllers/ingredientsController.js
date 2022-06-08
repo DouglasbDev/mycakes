@@ -3,7 +3,7 @@ const {v4: uuid} = require("uuid");
 const ingredient = require("../models/ingredients");
 
 module.exports = {
-  async index(resquest, response){
+  async index(request, response){
       try{
         const ingredients = await  ingredient.find();
         if(ingredients.length < 1){

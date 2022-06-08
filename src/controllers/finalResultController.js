@@ -6,7 +6,7 @@ const finalResult = require('../models/finalResult');
 
 
 module.exports = {
-    async index(resquest, response){
+    async index(request, response){
         try{
           const finalresults = await  finalResult.find();
           if(finalresults.length < 1){
