@@ -26,8 +26,8 @@ module.exports = {
       }
       
 
-    const emailUser = await users.find({where: { email }})
-    if(emailUser.length !== 0){ return response.status(400). json({ mensagem: 'Já existe um usuário com o mesmo EMAIL cadastrado na base!' })}
+     const emailUser = await users.find().where("email").equals(email)
+     if(emailUser.length !== 0){ return response.status(400). json({ mensagem: 'Já existe um usuário com o mesmo EMAIL cadastrado na base!' })}
    
 
       const user = new users({
@@ -67,7 +67,7 @@ module.exports = {
 
         return response.status(201).json({
             message: "Login succesfully!",   
-            user: verifyUser});
+            user: {name: verifyUser[0].name, email: verifyUser[0].email}});
     }catch(error){
         response.status(400).json({error: error.message});
     }
@@ -78,15 +78,15 @@ async update(request, response){
     const { name, email, password } = request.body
 
     if( !name && !email && !password ){
-        return response.status(400).json({error: "You must add the new name or price or description of the cake!"})
+        return response.status(400).json({error: "You must add the new name or email or password to the user!"})
     }
     if (name) response.user.name = name;
     if (email) response.user.email = email;
-    if (password) responseuser.password = password;
+    if (password) response.password = password;
 
     try{
       await response.user.save();
-      return response.status(200).json({message: "Cake update succesfully!"});
+      return response.status(200).json({message: "User update succesfully!"});
     }catch(err){
         response.status(500).json({error: err.message});
     }

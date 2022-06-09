@@ -20,7 +20,7 @@ module.exports = {
   },
 
   async store(request, response){
-      const { name, price, description } = request.body
+      const { name, price, description, idBolo } = request.body
 
       if( !name || !price || !description ){
           return response.status(400).json({error: "Missing name or price"})
@@ -28,6 +28,7 @@ module.exports = {
 
       const cakes = new cake({
           _id: uuid(),
+          idBolo,
           name,
           price,
           description,

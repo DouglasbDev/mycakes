@@ -22,6 +22,8 @@ routes.post("/ingredients", ingredientsController.store);
 routes.put("/ingredients/:id", ingredientsMiddlewares.validateId, ingredientsController.update);
 routes.delete("/ingredients/:id", ingredientsMiddlewares.validateId, ingredientsController.delete);
 
+
+
 routes.get("/finalResult", finalResultController.index);
 routes.post("/finalResult", finalResultController.store);
 routes.put("/finalResult/:id", finalResultMiddlewares.validateId,finalResultController.update);
@@ -31,12 +33,8 @@ routes.delete("/finalResult/:id", finalResultMiddlewares.validateId,finalResultC
 routes.get("/user", userController.index);
 routes.post("/user/singin", userController.storeCreate);
 routes.post("/user/login", userController.storeLogin);
-routes.put("user/:id", userCreateMiddlewares.validateId, userController.update);
+routes.put('/user/:id', userCreateMiddlewares.validateId,userController.update);
 routes.delete("/user/:id", userCreateMiddlewares.validateId, userController.delete);
-
-
-
-
 
 
 

@@ -1,19 +1,20 @@
 const { response } = require("express");
 const {v4: uuid} = require("uuid");
+const cake = require("../models/cake");
 
-const finalResult = require('../models/finalResult');
+const finalResults = require('../models/finalResult');
 
 
 
 module.exports = {
     async index(request, response){
         try{
-          const finalresults = await  finalResult.find();
-          if(finalresults.length < 1){
+          const finalresult = await  finalResults.find();
+          if(finalresult.length < 1){
               return response.status(404).json({message: "Not found final result!"})
           }
   
-          return response.status(200).json({ingredients}); 
+          return response.status(200).json({finalresult}); 
         }
         catch (error){
            response.status(500).json({error: error.message})
@@ -21,21 +22,26 @@ module.exports = {
     },
   
     async store(request, response){
-        const { name, price, } = request.body
+        const { name, idBolo, value1, value2, value3 } = request.body
+        // if( !idBolo || !value1 || !value2 || !value3 ){
+        //     return response.status(400).json({error: "Missing name or price"})
+        // }
+
+        const arrayCake = await cake.find({ where: { idBolo } })
+        const priceCake = Array(arrayCake)[0].map(any => any.price)
+        const sumResult = Number(priceCake) + Number(value1) + Number(value2) + Number(value3)
+        
   
-        if( !name || !price ){
-            return response.status(400).json({error: "Missing name or price"})
-        }
-  
-        const finalresults = new finalResult({
+        const result = new finalResults({
             _id: uuid(),
             name,
-            price,
+            price: sumResult,
+            
         })
   
         try{
-            await finalresults.save();
-  
+            
+            await result.save();
             return response.status(201).json({message: "Final result added succesfully!"});
         }catch(error){
             response.status(400).json({error: error.message});
