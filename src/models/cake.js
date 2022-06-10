@@ -22,6 +22,11 @@ const cakeSchema = new mongoose.Schema({
         required: true, 
      },
 
+     img:{
+      type: mongoose.Schema.Types.String,
+      required: true, 
+   },
+
      description:{
         type: mongoose.Schema.Types.String,
         required: true, 

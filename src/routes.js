@@ -1,9 +1,12 @@
 const express = require("express");
+const { route } = require("express/lib/application");
 const cakeController = require("./controllers/cakeController");
+const commentController = require("./controllers/commentController");
 const finalResultController = require("./controllers/finalResultController");
 const ingredientsController = require("./controllers/ingredientsController");
 const userController = require("./controllers/userController");
 const cakesMiddlewares = require("./middlewares/cakesMiddlewares");
+const commentMiddlewares = require("./middlewares/commentMiddlewares");
 const finalResultMiddlewares = require("./middlewares/finalResultMiddlewares");
 const ingredientsMiddlewares = require("./middlewares/ingredientsMiddlewares");
 const userCreateMiddlewares = require("./middlewares/userCreateMiddlewares");
@@ -35,6 +38,13 @@ routes.post("/user/singin", userController.storeCreate);
 routes.post("/user/login", userController.storeLogin);
 routes.put('/user/:id', userCreateMiddlewares.validateId,userController.update);
 routes.delete("/user/:id", userCreateMiddlewares.validateId, userController.delete);
+
+
+
+routes.get("/comment", commentController.index);
+routes.post("/comment", commentController.store);
+routes.put("/comment", commentMiddlewares.validateId, commentController.update);
+routes.delete("/comment", commentMiddlewares.validateId, commentController.delete);
 
 
 

@@ -1,15 +1,14 @@
 const { response } = require("express");
 const {v4: uuid} = require("uuid");
-
-
 const cake = require("../models/cake");
+const comment = require("../models/comment");
 
 module.exports = {
     async index(request, response){
       try{
-        const cakes = await  cake.find();
-        if(cakes.length < 1){
-            return response.status(404).json({message: "Not found cakes!"})
+        const comments = await  comment.find();
+        if(comments.length < 1){
+            return response.status(404).json({message: "Not found comments!"})
         }
 
         return response.status(200).json({cakes}); 
@@ -20,42 +19,45 @@ module.exports = {
   },
 
   async store(request, response){
-      const { name, price, description, idBolo, img } = request.body
+      const { title, description, idBolo } = request.body
 
-      if( !name || !price || !description ){
+      if( !title || !description ){
           return response.status(400).json({error: "Missing name or price"})
       }
 
-      const cakes = new cake({
+      const arrayCake = await cake.find({ where: { idBolo } })
+      const nameCake = Array(arrayCake)[0].map(any => any._id)
+
+      console.log(nameCake)
+
+
+      const comments = new comment({
           _id: uuid(),
-          idBolo,
-          name,
-          price,
+          idBolo: nameCake,
+          title,
           description,
-          img,
       })
 
       try{
-          await cakes.save();
+          await comments.save();
 
-          return response.status(201).json({message: "Cake added succesfully!"});
+          return response.status(201).json({message: "Comment added succesfully!"});
       }catch(error){
           response.status(400).json({error: error.message});
       }
   },
 
   async update(request, response){
-    const { name, price, description } = request.body
+    const { title, description } = request.body
 
-    if( !name && !price && !description ){
-        return response.status(400).json({error: "You must add the new name or price or description of the cake!"})
+    if( title && !description ){
+        return response.status(400).json({error: "You must add the new title  or description of the comment!"})
     }
-    if (name) response.cakes.name = name;
-    if (price) response.cakes.price = price;
-    if (description) response.cakes.description = description;
+    if (title) response.comments.title = title;
+    if (description) response.comments.description = description;
 
     try{
-      await response.cakes.save();
+      await response.comments.save();
       return response.status(200).json({message: "Cake update succesfully!"});
     }catch(err){
         response.status(500).json({error: err.message});
@@ -64,7 +66,7 @@ module.exports = {
 
   async delete(request, response){
       try{
-          await response.cakes.remove();
+          await response.comments.remove();
           return response.status(200).json({message: "Cake successfully deleted!"});
       }catch(err){
           return response.status(500).json({error: err.message})
