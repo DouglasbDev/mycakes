@@ -18,7 +18,7 @@
 // module.exports = connectToDatabase;
 
 
-import mongoose from 'mongoose';
+const mongoose = require("mongoose");
 
 const connectDB =  async ()=>{
 
