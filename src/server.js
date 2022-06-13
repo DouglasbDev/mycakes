@@ -1,6 +1,6 @@
 // require('dotenv').config({ path: process.env.DATABASE_URL });
 
-dotenv.config()
+require('dotenv').config();
 const port = process.env.PORT || 3333
 const mode = process.env.DATABASE_URL
 
