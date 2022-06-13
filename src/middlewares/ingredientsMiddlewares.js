@@ -1,6 +1,6 @@
 const { json } = require("express/lib/response");
 const { validate: isUuid } = require("uuid");
-const ingredient = require("../models/ingredients");
+const ingredient = require("../models/Ingredients");
 
 
 module.exports = {

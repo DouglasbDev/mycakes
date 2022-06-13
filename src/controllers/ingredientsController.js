@@ -1,6 +1,6 @@
 const { response } = require("express");
 const {v4: uuid} = require("uuid");
-const ingredient = require("../models/ingredients");
+const ingredient = require("../models/Ingredients");
 
 module.exports = {
   async index(request, response){
