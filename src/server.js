@@ -18,7 +18,7 @@ const port = process.env.PORT|| 3333;
 app.use(express.json());
 app.use(routes);
 
-//routes.get("/cakes", () => cakeController.index);
+
 
 app.listen(port, () => {
     console.log(`Backend started at http://localhost:${port}`);
