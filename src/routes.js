@@ -14,7 +14,7 @@ const userCreateMiddlewares = require("./middlewares/userCreateMiddlewares");
 const routes = express.Router();
 
 
-routes.get("/", (requeste, response) => response.send("servidor rodando"))
+routes.get("/", (requeste, response) => response.send("OI"))
 
 routes.get("/cakes", cakeController.index);
 routes.post("/cakes", cakeController.store);
