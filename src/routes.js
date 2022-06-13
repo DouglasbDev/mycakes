@@ -1,3 +1,4 @@
+const { response } = require("express");
 const express = require("express");
 const { route } = require("express/lib/application");
 const cakeController = require("./controllers/cakeController");
@@ -12,6 +13,8 @@ const ingredientsMiddlewares = require("./middlewares/ingredientsMiddlewares");
 const userCreateMiddlewares = require("./middlewares/userCreateMiddlewares");
 const routes = express.Router();
 
+
+routes.get("/", (requeste, response) => response.send("servidor rodando"))
 
 routes.get("/cakes", cakeController.index);
 routes.post("/cakes", cakeController.store);
