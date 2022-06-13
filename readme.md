@@ -1,10 +1,10 @@
 Rotas api = 
 
-User : (LISTAR USUARIOS) GET = https://my-cakes.herokuapp.com/user
-(CRIAR NOVOS USUARIOS)POST = https://my-cakes.herokuapp.com/user/singin
-(FAZER LOGIN COM USUARIO JÁ CRIADO)POST = https://my-cakes.herokuapp.com/user/login
-(ALTERAR INFORMAÇÕES DO USUARIO)PUT = https://my-cakes.herokuapp.com/user/:id
-(DELETAR USUARIO)DELETE = https://my-cakes.herokuapp.com/user/:id
+User : (LISTAR USUARIOS) GET = https://my-cakes.herokuapp.com/user  //
+(CRIAR NOVOS USUARIOS)POST = https://my-cakes.herokuapp.com/user/singin  //
+(FAZER LOGIN COM USUARIO JÁ CRIADO)POST = https://my-cakes.herokuapp.com/user/login  //
+(ALTERAR INFORMAÇÕES DO USUARIO)PUT = https://my-cakes.herokuapp.com/user/:id  //
+(DELETAR USUARIO)DELETE = https://my-cakes.herokuapp.com/user/:id  //
 
 
 Cakes : (LISTAR TODOS OS BOLOS)GET = https://my-cakes.herokuapp.com/cakes
