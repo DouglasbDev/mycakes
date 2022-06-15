@@ -1,6 +1,7 @@
-// require('dotenv').config({ path: process.env.DATABASE_URL });
-
 require('dotenv').config()
+const cors = require ("cors");
+
+
 const port = process.env.PORT || 3333
 const mode = process.env.DATABASE_URL
 
@@ -16,8 +17,10 @@ const connectToDatabase = require("./database")
 
 connectToDatabase();
 
+
+app.use(cors());
 const app = express();
-// const port = process.env.PORT|| 3333;
+
 
 app.use(express.json());
 app.use(routes);
